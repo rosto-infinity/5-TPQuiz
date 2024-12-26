@@ -19,7 +19,8 @@ import Question from './Question.vue';
 const props =defineProps({
   quizData: Object
 });
-const step =ref(2);
+const step =ref(0);
+const answers = ref(props.quizData.questions[step.value].correct_answer)
 
 const question =computed(()=> props.quizData.questions[step.value])
 </script>
