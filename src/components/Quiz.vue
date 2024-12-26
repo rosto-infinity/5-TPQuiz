@@ -6,7 +6,8 @@
     :max="quizData.questions.length -1"
     class="mt"
     />
-    <Question :question="question" v-if="question" @answer="addAnswer"/>
+    <Question :question="question" v-if="state==='question'" @answer="addAnswer"/>
+    <Recap v-if="state== 'recap'"/>
     {{ answers}}
   </div>
 </template>
@@ -15,22 +16,24 @@
 import { ref, computed } from 'vue';
 import Progress from './Progress.vue';
 import Question from './Question.vue';
+import Recap from './Recap.vue';
 
 const props =defineProps({
   quizData: Object
 });
+
+const state =ref('question');
 const answers = ref(props.quizData.questions.map(() => null));
 const step =ref(0);
 const question =computed(()=> props.quizData.questions[step.value]);
 
 const addAnswer =(answer) =>{
   answers.value[step.value] = answer;
-
-  if (step.value < props.quizData.questions.length - 1) {
-    step.value++;
+  if (step.value === props.quizData.questions.length - 1) {
+    state.value = 'recap';
   } else {
-    // Logique pour terminer le quiz
-    console.log("Quiz terminé");
+    step.value++;
+    
   }
 }
 </script>
