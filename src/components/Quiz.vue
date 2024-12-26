@@ -6,7 +6,10 @@
     :max="quizData.questions.length -1"
     class="mt"
     />
-    <Question :question="question" v-if="state==='question'" @answer="addAnswer"/>
+    <Question
+      :key="question.question"
+      :question="question" v-if="state==='question'" 
+      @answer="addAnswer"/>
     <Recap v-if="state== 'recap'"/>
     {{ answers}}
   </div>
