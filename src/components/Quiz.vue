@@ -10,7 +10,7 @@
       :key="question.question"
       :question="question" v-if="state==='question'" 
       @answer="addAnswer"/>
-    <Recap v-if="state== 'recap'"/>
+    <Recap v-if="state== 'recap'" :answers="answers" :quizData="quizData" />
     {{ answers}}
   </div>
 </template>
