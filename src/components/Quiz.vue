@@ -25,13 +25,13 @@ const question =computed(()=> props.quizData.questions[step.value]);
 
 const addAnswer =(answer) =>{
   answers.value[step.value] = answer;
-  
-  // if (step.value < props.quizData.questions.length - 1) {
-  //   step.value++;
-  // } else {
-  //   // Logique pour terminer le quiz
-  //   console.log("Quiz terminé");
-  // }
+
+  if (step.value < props.quizData.questions.length - 1) {
+    step.value++;
+  } else {
+    // Logique pour terminer le quiz
+    console.log("Quiz terminé");
+  }
 }
 </script>
 
