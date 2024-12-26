@@ -6,7 +6,7 @@
     :max="quizData.questions.length -1"
     class="mt"
     />
-    <Question :question="question" v-if="question"/>
+    <Question :question="question" v-if="question" @answer="addAnswer"/>
     {{ answers}}
   </div>
 </template>
@@ -22,6 +22,17 @@ const props =defineProps({
 const answers = ref(props.quizData.questions.map(() => null));
 const step =ref(0);
 const question =computed(()=> props.quizData.questions[step.value]);
+
+const addAnswer =(answer) =>{
+  answers.value[step.value] = answer;
+  
+  // if (step.value < props.quizData.questions.length - 1) {
+  //   step.value++;
+  // } else {
+  //   // Logique pour terminer le quiz
+  //   console.log("Quiz terminé");
+  // }
+}
 </script>
 
 <style  scoped>
