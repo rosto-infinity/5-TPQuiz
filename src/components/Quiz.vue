@@ -6,8 +6,8 @@
     :max="quizData.questions.length -1"
     class="mt"
     />
-
     <Question :question="question" v-if="question"/>
+    {{ answers}}
   </div>
 </template>
 
@@ -19,10 +19,9 @@ import Question from './Question.vue';
 const props =defineProps({
   quizData: Object
 });
+const answers = ref(props.quizData.questions.map(() => null));
 const step =ref(0);
-const answers = ref(props.quizData.questions[step.value].correct_answer)
-
-const question =computed(()=> props.quizData.questions[step.value])
+const question =computed(()=> props.quizData.questions[step.value]);
 </script>
 
 <style  scoped>
